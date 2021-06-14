@@ -1,38 +1,39 @@
 ---
-title: Hello World
+title: hello-world
+date: 2021-06-15 00:23:26
+tags: 
 ---
-Welcome to [Hexo](https://hexo.io/)! This is your very first post. Check [documentation](https://hexo.io/docs/) for more info. If you get any problems when using Hexo, you can find the answer in [troubleshooting](https://hexo.io/docs/troubleshooting.html) or you can ask me on [GitHub](https://github.com/hexojs/hexo/issues).
 
-## Quick Start
+# 现在来给文章添加一张图片吧
 
-### Create a new post
+比如：
 
-``` bash
-$ hexo new "My New Post"
-```
+1. 使用标签（typora无法预览）
 
-More info: [Writing](https://hexo.io/docs/writing.html)
+   ```java
+   // {% hello-world 2.jpeg img %}
+   ```
+   {% asset_img 2.jpeg img %}
 
-### Run server
+3. 直接文件夹\图片名（typora可以预览）
 
-``` bash
-$ hexo server
-```
+   ```java
+   //![img](hello-world\2.jpeg)
+   ```
 
-More info: [Server](https://hexo.io/docs/server.html)
+   ![](hello-world\2.jpeg)
 
-### Generate static files
+4. 直接使用图片名（typora中无法预览）
 
-``` bash
-$ hexo generate
-```
+   ```java
+   //![img](2.jpeg)
+   ```
 
-More info: [Generating](https://hexo.io/docs/generating.html)
+   ![img](2.jpeg)
 
-### Deploy to remote sites
 
-``` bash
-$ hexo deploy
-```
 
-More info: [Deployment](https://hexo.io/docs/one-command-deployment.html)
+
+
+
+
