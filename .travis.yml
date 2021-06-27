@@ -28,7 +28,7 @@ branches:
 # 指定博客的仓库地址
 env:
  global:
-    - GH_REF: "github.com:yantuyouyuxian/yantuyouyuxian.git"
+    - GH_REF: https://${GITHUB_TOKEN}@github.com/yantuyouyuxian/yantuyouyuxian.git
 
 # notifications:
 #   email:
@@ -46,4 +46,4 @@ after_script:
   - git config user.email "2366120116@qq.com"
   - git add .
   - git commit -m "TravisCI 自动部署"
-  - git push --force --quiet "https://${GITHUB_TOKEN}@${GH_REF}" master:main
+  - git push --force --quiet "${GH_REF}" master:main
