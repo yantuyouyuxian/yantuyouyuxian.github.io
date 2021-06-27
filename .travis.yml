@@ -12,8 +12,8 @@ before_install:
 
 
 # Start: Build Lifecycle
-install:
-  - npm install
+# install:
+#   - npm install
 
 # 执行清缓存，生成网页操作
 script:
