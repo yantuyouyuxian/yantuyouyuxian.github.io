@@ -26,6 +26,18 @@ hexo的安装配置教程众多，百度即可
     branch: main
   ```
 
+- github和gitee同时部署
+
+  ```yaml
+  deploy:
+    - type: git
+      repo: git@github.com:yantuyouyuxian/yantuyouyuxian.github.io.git
+      branch: main
+    - type: git
+      repo: https://gitee.com/yantuyouyuxian/yantuyouyuxian.git
+      branch: main
+  ```
+  
 - 如何在将博客部署到远端的同时，将本地资源路径使用github进行备份方便迁移
 
   详细参考链接：[hexo博客的备份和迁移_小皮子摘星星的博客-CSDN博客](https://blog.csdn.net/qq_37391214/article/details/100186909)
@@ -64,4 +76,11 @@ hexo deploy
 # (注意：两个&会将多个命令按顺序执行)
 hexo clean && hexo generate && hexo deploy && hexo server
 ```
+
+# 域名绑定后每次deploy后404问题
+
+推送到github后每次自定义的域名都会被置空，解决办法：
+
+- 在博客的post目录下新建CNAME文件
+- 在文件中输入自定义域名即可
 

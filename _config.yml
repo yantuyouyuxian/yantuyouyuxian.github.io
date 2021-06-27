@@ -103,6 +103,11 @@ theme: butterfly
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
-  type: git
-  repo: git@github.com:yantuyouyuxian/yantuyouyuxian.github.io.git
-  branch: main
+  - type: git
+    repo: git@github.com:yantuyouyuxian/yantuyouyuxian.git
+    branch: main
+  - type: git
+    repo: https://gitee.com/yantuyouyuxian/yantuyouyuxian.git
+    branch: main
+
+  
