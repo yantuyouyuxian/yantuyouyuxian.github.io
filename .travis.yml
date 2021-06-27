@@ -28,7 +28,7 @@ branches:
 # 指定博客的仓库地址
 env:
  global:
-    - GH_REF: "@github.com:yantuyouyuxian/yantuyouyuxian.git"
+    - GH_REF: "github.com:yantuyouyuxian/yantuyouyuxian.git"
 
 # notifications:
 #   email:
