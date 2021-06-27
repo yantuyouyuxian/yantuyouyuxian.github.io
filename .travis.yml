@@ -10,6 +10,13 @@ cache:
 before_install:
     - export TZ='Asia/Shanghai' # 更改时区    
 
+  # 设置git提交名，邮箱；替换真实token到_config.yml文件
+before_script:
+  - git config user.name "Michael728"
+  - git config user.email "649168982@qq.com"
+  # 替换同目录下的_config.yml文件中github_token字符串为travis后台刚才配置的变量，注>意此处sed命令用了双引号。单引号无效！
+  - sed -i "s/github_token/${GITHUB_TOKEN}/g" _config.yml || exit 1
+
 # Start: Build Lifecycle
 install:
   - npm install
@@ -18,6 +25,7 @@ install:
 script:
   - hexo clean
   - hexo generate
+  - hexo deploy
 
 # 指定博客分支
 branches:
@@ -28,15 +36,21 @@ branches:
 env:
  global:
     - GH_REF: git@github.com:yantuyouyuxian/yantuyouyuxian.git
+
+notifications:
+  email:
+    - 2366120116@qq.com
+  on_success: change
+  on_failure: always
     
 # - GE_REF: https://gitee.com/yantuyouyuxian/yantuyouyuxian.git
 # 设置git提交名，邮箱；替换真实token到_config.yml文件，最后depoy部署
 # - git push --force --quiet "https://${GE_USERNAME}:${GE_PASSWORD}@${GE_REF}" main:main
-after_script:
-  - cd ./public
-  - git init
-  - git config user.name "zhanghan"
-  - git config user.email "2366120116@qq.com"
-  - git add .
-  - git commit -m "TravisCI 自动部署"
-  - git push --force --quiet "https://${GITHUB_TOKEN}@${GH_REF}" main
+# after_script:
+#   - cd ./public
+#   - git init
+#   - git config user.name "zhanghan"
+#   - git config user.email "2366120116@qq.com"
+#   - git add .
+#   - git commit -m "TravisCI 自动部署"
+#   - git push --force --quiet "https://${GITHUB_TOKEN}@${GH_REF}" main

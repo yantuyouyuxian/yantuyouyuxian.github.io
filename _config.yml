@@ -117,10 +117,10 @@ aplayer:
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   - type: git
-    repo: git@github.com:yantuyouyuxian/yantuyouyuxian.git
+    repo: git@github_token@github.com:yantuyouyuxian/yantuyouyuxian.git
     branch: main
-  - type: git
-    repo: https://gitee.com/yantuyouyuxian/yantuyouyuxian.git
-    branch: main
+  # - type: git
+  #   repo: https://gitee.com/yantuyouyuxian/yantuyouyuxian.git
+  #   branch: main
 
   
