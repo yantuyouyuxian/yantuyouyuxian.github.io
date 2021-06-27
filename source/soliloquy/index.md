@@ -14,7 +14,9 @@ type: soliloquy
 
 {% note info no-icon %}
 
-尝试使用travis做hexo持续集成。
+尝试使用Travis做hexo持续集成。
+
+如果可以看到这条消息，说明成功了~
 
 {% endnote %}
 
