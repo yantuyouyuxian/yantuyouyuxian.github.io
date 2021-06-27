@@ -14,7 +14,7 @@ type: soliloquy
 
 {% note info no-icon %}
 
-尝试使用travis做hexo持续集成
+尝试使用travis做hexo持续集成。
 
 {% endnote %}
 

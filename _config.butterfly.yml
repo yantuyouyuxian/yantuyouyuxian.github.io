@@ -1,15 +1,5 @@
 # Main menu navigation (導航目錄)
 # --------------------------------------
-  # Artitalk
-  # see https://artitalk.js.org/
-  artitalk:
-    enable: true
-    appId:
-    appKey:
-    path:
-    js:
-    option:
-    front_matter:
 
 # format: name: link || icon
 # sub-menu
