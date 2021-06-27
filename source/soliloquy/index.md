@@ -10,3 +10,11 @@ type: soliloquy
 
 {% endnote %}
 
+
+
+{% note info no-icon %}
+
+尝试使用travis做hexo持续集成
+
+{% endnote %}
+
