@@ -16,7 +16,13 @@ type: soliloquy
 
 尝试使用Travis做hexo持续集成。
 
-如果可以看到这条消息，说明成功了~
+{% endnote %}
+
+
+
+{% note info no-icon %}
+
+感觉不错
 
 {% endnote %}
 
