@@ -27,14 +27,14 @@ cover: false
 
 比如我在同名文件夹下放了一张图片：2.jpeg，在文章中：
 
-1. 使用标签（typora无法预览）
+1. 使用标签（typora无法预览，但有效）
 
    ```java
    // {% asset_img 2.jpeg img %}
    ```
    {% asset_img 2.jpeg img %}
 
-3. 直接文件夹\图片名（typora可以预览）
+3. 直接文件夹\图片名（typora可以预览，但无效）
 
    ```java
    //![img](”和文章标题同名的文件夹名称“\2.jpeg)
@@ -42,7 +42,7 @@ cover: false
 
    ![](hello-world\2.jpeg)
 
-4. 直接使用图片名（typora中无法预览）
+4. 直接使用图片名（typora中无法预览，但有效）
 
    ```java
    //![img](2.jpeg)
@@ -50,14 +50,14 @@ cover: false
 
    ![img](2.jpeg)
    
-4. 访问img文件下的图片（typora无法预览）
+4. 直接访问img文件夹下的图片（typora无法预览，但有效）
 
    ```java
-   //![img](img/b.jpeg)
+   //![img](/img/b.jpeg)
    //如果在img下确实有这张图片是可以显示的
    ```
    
-   ![img](img/b.jpeg)
+   ![img](/img/b.jpeg)
 
 # 结论
 

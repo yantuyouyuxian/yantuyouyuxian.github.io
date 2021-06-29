@@ -1,15 +1,13 @@
 ---
-title: 使用Travis CI给hexo的部署做持续集成
+title: 使用TravisCI给hexo的部署做持续集成
 categories:
   - hexo
 tags:
   - hexo
-  - Travis CI
+  - TravisCI
 cover: false
-date: 2021-06-28 00:33
+date: 2021-06-29 19:57:37
 ---
-
-
 
 # 为什么要使用持续集成？
 
@@ -35,7 +33,7 @@ date: 2021-06-28 00:33
 
 3. 有了token后，复制，到Travis-CI点击你的博客仓库，右上角点击进入设置，添加一个环境变量（环境变量名无所谓，方便识别就行，如：GITHUB_TOKEN），值就是生成的token，如图所示：
 
-   ![image-20210628141320187](D:\blog\github-blog\source\_posts\使用Travis-CI给hexo的部署做持续集成.assets\image-20210628141320187.png)
+   ![img](travis.png)
 
 4. 在博客根目录添加```.travis.yaml```文件，本人配置内容如下：
 
