@@ -125,14 +125,14 @@ deploy:
 
 
 
-# Artitalk
-# see https://artitalk.js.org/
-artitalk:
-  enable: true
-  appId: RmRFz9e8zishMltx4MBPLNKY-MdYXbMMI
-  appKey: iTFkjH43ce5c5uIaOn7h2jp0
-  path:
-  js:
-  option:
-  front_matter:
+# # Artitalk
+# # see https://artitalk.js.org/
+# artitalk:
+#   enable: true
+#   appId: RmRFz9e8zishMltx4MBPLNKY-MdYXbMMI
+#   appKey: iTFkjH43ce5c5uIaOn7h2jp0
+#   path:
+#   js:
+#   option:
+#   front_matter:
 
