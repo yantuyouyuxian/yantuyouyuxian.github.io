@@ -4,7 +4,7 @@
 
 # Site
 title: Life is a joke
-subtitle: but I couldnt laugh
+subtitle: but I couldn`t laughs
 description: ''
 keywords:
 author: zhang h
@@ -13,7 +13,7 @@ timezone: ''
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: https://yantuyouyuxian.github.io
+url: https://yantuyouyuxian.cn
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
