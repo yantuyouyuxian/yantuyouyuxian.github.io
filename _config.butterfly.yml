@@ -27,16 +27,7 @@ menu:
 hide_sidebar_menu_child: true
 
 
-# Artitalk
-# see https://artitalk.js.org/
-artitalk:
-  enable: true
-  appId: RmRFz9e8zishMltx4MBPLNKY-MdYXbMMI
-  appKey: iTFkjH43ce5c5uIaOn7h2jp0
-  path:
-  js:
-  option:
-  front_matter:
+
 
 
 # Code Blocks (代碼相關)
@@ -276,35 +267,7 @@ addtoany:
 # Comments System
 # --------------------------------------
 
-comments:
-  # Up to two comments system, the first will be shown as default
-  # Choose: Disqus/Disqusjs/Livere/Gitalk/Valine/Waline/Utterances/Facebook Comments/Twikoo
-  use:
-  - Valine
-  # - Disqus
-  text: false # Display the comment name next to the button
-  # lazyload: The comment system will be load when comment element enters the browser's viewport.
-  # If you set it to true, the comment count will be invalid
-  lazyload: false
-  count: true # Display comment count in post's top_img
-  card_post_count: true # Display comment count in Home Page
 
-valine:
-  appId: RmRFz9e8zishMltx4MBPLNKY-MdYXbMMI # leancloud application app id
-  appKey: iTFkjH43ce5c5uIaOn7h2jp0 # leancloud application app key
-  pageSize: 10 # comment list page size
-  avatar: monsterid # gravatar style https://valine.js.org/#/avatar
-  lang: zh-CN # i18n: zh-CN/zh-TW/en/ja
-  placeholder: 留下你的足迹~ # valine comment input placeholder(like: Please leave your footprints )
-  guest_info: nick,mail # link #valine comment header info (nick/mail/link)
-  recordIP: true # Record reviewer IP
-  serverURLs: # This configuration is suitable for domestic custom domain name users, overseas version will be automatically detected (no need to manually fill in)
-  bg: /img/comment_bg.png # valine background
-  emojiCDN: # emoji CDN
-  enableQQ: false # enable the Nickname box to automatically get QQ Nickname and QQ Avatar
-  requiredFields: nick,mail # required fields (nick/mail)
-  visitor: false
-  option:
 
 # disqus
 # https://disqus.com/
@@ -882,6 +845,50 @@ inject:
     # - <link rel="stylesheet" href="/xxx.css">
   bottom:
     # - <script src="xxxx"></script>
+
+
+
+comments:
+  # Up to two comments system, the first will be shown as default
+  # Choose: Disqus/Disqusjs/Livere/Gitalk/Valine/Waline/Utterances/Facebook Comments/Twikoo
+  use:
+  - Valine
+  # - Disqus
+  text: false # Display the comment name next to the button
+  # lazyload: The comment system will be load when comment element enters the browser's viewport.
+  # If you set it to true, the comment count will be invalid
+  lazyload: false
+  count: true # Display comment count in post's top_img
+  card_post_count: true # Display comment count in Home Page
+
+valine:
+  appId: RmRFz9e8zishMltx4MBPLNKY-MdYXbMMI # leancloud application app id
+  appKey: iTFkjH43ce5c5uIaOn7h2jp0 # leancloud application app key
+  pageSize: 10 # comment list page size
+  avatar: monsterid # gravatar style https://valine.js.org/#/avatar
+  lang: zh-CN # i18n: zh-CN/zh-TW/en/ja
+  placeholder: 留下你的足迹~ # valine comment input placeholder(like: Please leave your footprints )
+  guest_info: nick,mail # link #valine comment header info (nick/mail/link)
+  recordIP: true # Record reviewer IP
+  serverURLs: # This configuration is suitable for domestic custom domain name users, overseas version will be automatically detected (no need to manually fill in)
+  bg: /img/comment_bg.png # valine background
+  emojiCDN: # emoji CDN
+  enableQQ: true # enable the Nickname box to automatically get QQ Nickname and QQ Avatar
+  requiredFields: ['nick','mail'] # required fields (nick/mail)
+  visitor: false
+  option:
+  
+# Artitalk
+# see https://artitalk.js.org/
+artitalk:
+  enable: true
+  appId: RmRFz9e8zishMltx4MBPLNKY-MdYXbMMI
+  appKey: iTFkjH43ce5c5uIaOn7h2jp0
+  path: /artitalk #默认/artitalk
+  js:
+  option:
+  front_matter:
+    comments: false
 
 # CDN
 # Don't modify the following settings unless you know how they work
