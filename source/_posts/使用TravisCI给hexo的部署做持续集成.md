@@ -1,12 +1,12 @@
 ---
 title: 使用TravisCI给hexo的部署做持续集成
+date: 2021-06-29 19:57:37
 categories:
   - hexo
 tags:
   - hexo
   - TravisCI
 cover: false
-date: 2021-06-29 19:57:37
 ---
 
 # 为什么要使用持续集成？
