@@ -357,9 +357,9 @@ facebook_comments:
 # Twikoo
 # https://github.com/imaegoo/twikoo
 twikoo:
-  envId:
+  envId: hello-cloudbase-4geu87ic2165e3e2
   region:
-  visitor: false
+  visitor: true
   option:
 
 # Chat Services
@@ -853,7 +853,8 @@ comments:
   # Up to two comments system, the first will be shown as default
   # Choose: Disqus/Disqusjs/Livere/Gitalk/Valine/Waline/Utterances/Facebook Comments/Twikoo
   use:
-  - Valine
+    - Twikoo
+  # - Valine
   # - Disqus
   text: false # Display the comment name next to the button
   # lazyload: The comment system will be load when comment element enters the browser's viewport.

@@ -39,7 +39,7 @@ cover: false
    //![img](”和文章标题同名的文件夹名称“\2.jpeg)
    ```
 
-   ![](hello-world\2.jpeg)
+   ![](如何在hexo的博客中插入图片\2.jpeg)
 
 4. 直接使用图片名（typora中无法预览，但有效）
 
