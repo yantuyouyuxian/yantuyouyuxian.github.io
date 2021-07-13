@@ -7,9 +7,10 @@
 #   name: link || icon
 menu:
   主页: / || fas fa-home
-  归档: /archives/ || fas fa-archive
-  标签: /tags/ || fas fa-tags
-  分类: /categories/ || fas fa-folder-open
+  文章||fa fa-book:
+    归档: /archives/ || fas fa-archive
+    标签: /tags/ || fas fa-tags
+    分类: /categories/ || fas fa-folder-open
   About: /about/ || fas fa-heart
   其他||fa fa-plus-square:
     自言自语: /artitalk/ || far fa-comment-alt
@@ -34,7 +35,7 @@ hide_sidebar_menu_child: true
 # Code Blocks (代碼相關)
 # --------------------------------------
 
-highlight_theme: light #  darker / pale night / light / ocean / mac / mac light / false
+highlight_theme: mac #  darker / pale night / light / ocean / mac / mac light / false
 highlight_copy: true # copy button
 highlight_lang: true # show the code language
 highlight_shrink: false # true: shrink the code blocks / false: expand the code blocks | none: expand code blocks and hide the button
@@ -67,7 +68,7 @@ algolia_search:
 
 # Local search
 local_search:
-  enable: false
+  enable: true
 
 # Math (數學)
 # --------------------------------------
@@ -91,21 +92,21 @@ katex:
 # --------------------------------------
 
 # Favicon（網站圖標）
-favicon: /img/tsl.jpg
+favicon: /img/avatar.jpg
 
 # Avatar (頭像)
 avatar:
-  img: img/tsl.jpg
+  img: img/avatar.jpg
   effect: false
 
 # Disable all banner image
 disable_top_img: false
 
 # The banner image of home page
-index_img: img/b.jpeg
+index_img: img/default_top.jpeg
 
 # If the banner of page not setting, it will show the top_img
-default_top_img: img/b.jpeg
+default_top_img: img/default_top.jpeg
 
 # The banner image of archive page
 archive_img: 
@@ -504,7 +505,7 @@ tag_ui: # 留空或 index
 background:
 
 # Footer Background
-footer_bg: false
+footer_bg: true
 
 # the position of bottom right button/default unit: px (右下角按鈕距離底部的距離/默認單位為px)
 rightside-bottom:
@@ -576,7 +577,7 @@ display_mode: light
 
 # Beautify (美化頁面顯示)
 beautify:
-  enable: false
+  enable: true
   field: post # site/post
   title-prefix-icon: '\f0c1'
   title-prefix-icon-color: '#F47466'
@@ -782,14 +783,14 @@ note:
 # It may contain bugs and unstable, give feedback when you find the bugs.
 # https://github.com/MoOx/pjax
 pjax:
-  enable: false
+  enable: true
   exclude:
     # - xxxx
     # - xxxx
 
 # Inject the css and script (aplayer/meting)
 aplayerInject:
-  enable: false
+  enable: true
   per_page: true
 
 # Snackbar (Toast Notification 彈窗)
@@ -845,7 +846,10 @@ inject:
   head:
     # - <link rel="stylesheet" href="/xxx.css">
   bottom:
-    # - <script src="xxxx"></script>
+    - <div class="aplayer no-destroy" data-id="6830309011" data-theme="#FF2D2D" data-server="netease"
+    - data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="true" data-order="list" data-preload="auto" data-autoplay="false" muted></div>
+
+
 
 
 

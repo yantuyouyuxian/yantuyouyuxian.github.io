@@ -6,6 +6,7 @@ categories:
 tags: 
 - hexo
 cover: false
+myPath: post/hexo-img
 ---
 
 # 如何在hexo的博客中插入图片

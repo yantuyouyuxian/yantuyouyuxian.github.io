@@ -7,6 +7,7 @@ categories:
 tags:
 - hexo
 cover: false
+myPath: post/hexo-config
 ---
 
 # hexo的安装

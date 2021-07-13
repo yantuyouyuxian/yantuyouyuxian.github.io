@@ -14,7 +14,7 @@ timezone: ''
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
 url: https://yantuyouyuxian.cn
-permalink: :year/:month/:day/:title/
+permalink: :myPath/
 permalink_defaults:
 pretty_urls:
   trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
@@ -112,7 +112,7 @@ aplayer:
   meting: true                                  # MetingJS 支持
   #meting_api: http://xxx/api.php                # 自定义 Meting API 地址
   #meting_cdn: http://xxx/Meing.min.js           # 引用 Meting.js 外部 CDN 地址 (默认不开启)
-  asset_inject: true                            # 自动插入 Aplayer.js 与 Meting.js 资源脚本, 默认开启
+  asset_inject: false                            # 自动插入 Aplayer.js 与 Meting.js 资源脚本, 默认开启
   #externalLink: http://xxx/aplayer.min.js       # 老版本参数，功能与参数 cdn 相同meting: true
 
 

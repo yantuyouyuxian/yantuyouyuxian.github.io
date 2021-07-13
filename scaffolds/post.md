@@ -6,5 +6,6 @@ categories:
 tags:
 - 
 cover: false
+myPath: post/xxxx
 ---
 

@@ -7,6 +7,7 @@ tags:
   - hexo
   - TravisCI
 cover: false
+myPath: post/travisCI
 ---
 
 # 为什么要使用持续集成？
