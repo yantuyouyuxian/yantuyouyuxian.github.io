@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>使用TravisCI给hexo的部署做持续集成</title>
+      <link href="/post/travisCI/"/>
+      <url>/post/travisCI/</url>
+      
+        <content type="html"><![CDATA[<h1 id="为什么要使用持续集成？"><a href="#为什么要使用持续集成？" class="headerlink" title="为什么要使用持续集成？"></a>为什么要使用持续集成？</h1><p>首先来回忆下使用hexo发布一篇博客的基本步骤吧：</p><ol><li><code>hexo new &quot;xxx&quot;</code></li><li>写博客</li><li><code>hexo c</code></li><li><code>hexo g</code></li><li><code>hexo d</code></li></ol><p>以上是hexo写一篇博客的几个基本步骤，值得一提的是hexo g和hexo d两个操作，generate是hexo将我们写的md文件转换成网页静态资源文件的过程，执行这个命令后，你的博客根目录下的public文件夹中的文件就是deploy到git上的文件夹，你可以比对确认。</p><p>此外，如果你像我一样，还把hexo的资源文件（不是public目录下生成部署使用的网页资源）同步推送到git上进行备份，那么还需要使用额外的git命令：add，commit，push。</p><p>这样一看是不是就有些麻烦了呢？而持续集成就可以十分方便的简化我们维护博客的过程，配置完成后，你在写完一篇博客后只需要在blog根目录执行git push操作，让CI工具帮你处理hexo的一系列生成过程即可。</p><h1 id="怎么使用？"><a href="#怎么使用？" class="headerlink" title="怎么使用？"></a>怎么使用？</h1><ol><li><p>首先注册Travis-CI账户，可以直接使用GitHub账户登录；</p></li><li><p>注册完成后到GitHub上生成自己的token，之所以使用token是因为CI环境没有我们的SSH密钥，但hexo的deploy会操作我们的仓库；</p></li><li><p>有了token后，复制，到Travis-CI点击你的博客仓库，右上角点击进入设置，添加一个环境变量（环境变量名无所谓，方便识别就行，如：GITHUB_TOKEN），值就是生成的token，如图所示：</p><p><img src="/post/travisCI/travis.png" alt="img"></p></li><li><p>在博客根目录添加<code>.travis.yaml</code>文件，本人配置内容如下：</p><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">language:</span> <span class="string">node_js</span> <span class="comment">#指定使用的语言</span></span><br><span class="line"></span><br><span class="line"><span class="attr">node_js:</span> <span class="string">stable</span>  <span class="comment">#采用nodejs的最新版本</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 指定缓存模块，可选。缓存可加快编译速度。</span></span><br><span class="line"><span class="attr">cache:</span></span><br><span class="line">  <span class="attr">directories:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">node_modules</span></span><br><span class="line"></span><br><span class="line"><span class="attr">before_install:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">export</span> <span class="string">TZ=&#x27;Asia/Shanghai&#x27;</span> <span class="comment"># 更改时区    </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Start: Build Lifecycle</span></span><br><span class="line"><span class="attr">install:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">npm</span> <span class="string">install</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 执行清缓存，生成网页操作</span></span><br><span class="line"><span class="attr">script:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">hexo</span> <span class="string">clean</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">hexo</span> <span class="string">generate</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 指定博客分支</span></span><br><span class="line"><span class="attr">branches:</span></span><br><span class="line">  <span class="attr">only:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">hexo</span> <span class="comment">#触发持续集成的分支</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 指定博客的仓库地址</span></span><br><span class="line"><span class="attr">env:</span></span><br><span class="line"> <span class="attr">global:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">GH_REF:</span> <span class="string">https://$&#123;GITHUB_TOKEN&#125;@github.com/yantuyouyuxian/yantuyouyuxian.git</span></span><br><span class="line"><span class="comment"># 设置git提交名，邮箱；替换真实token到_config.yml文件，最后depoy部署</span></span><br><span class="line"><span class="attr">after_script:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">cd</span> <span class="string">./public</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">git</span> <span class="string">init</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">git</span> <span class="string">config</span> <span class="string">user.name</span> <span class="string">&quot;xxxx&quot;</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">git</span> <span class="string">config</span> <span class="string">user.email</span> <span class="string">&quot;xxxx@qq.com&quot;</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">git</span> <span class="string">add</span> <span class="string">.</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">git</span> <span class="string">commit</span> <span class="string">-m</span> <span class="string">&quot;TravisCI 自动部署&quot;</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">git</span> <span class="string">push</span> <span class="string">--force</span> <span class="string">--quiet</span> <span class="string">&quot;$&#123;GH_REF&#125;&quot;</span> <span class="string">master:main</span></span><br><span class="line"></span><br></pre></td></tr></table></figure></li></ol><h1 id="踩的坑"><a href="#踩的坑" class="headerlink" title="踩的坑"></a>踩的坑</h1><div class="note info simple"><p>整个过程唯一要注意的一点就是将CI生成的public文件夹push到git的路径设置问题，也就是<code>.travis.yaml</code>中after_script部分。</p><ul><li>首先进入public文件夹，就是生成的网页资源静态文件</li><li>然后将这个文件夹推送到我们部署博客的git仓库</li><li>因为这里是CI线上的虚拟环境，不像我们本地配置了ssh密钥可以直接操作git仓库，所以需要用到token，token的使用就如GH_REF变量所示</li><li>最后是<code>master:main</code>意思是将本地的master分支推送到目标仓库的main分支的意思</li></ul></div>]]></content>
+      
+      
+      <categories>
+          
+          <category> hexo </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> hexo </tag>
+            
+            <tag> TravisCI </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>hexo配置和基础命令</title>
+      <link href="/post/hexo-config/"/>
+      <url>/post/hexo-config/</url>
+      
+        <content type="html"><![CDATA[<h1 id="hexo的安装"><a href="#hexo的安装" class="headerlink" title="hexo的安装"></a>hexo的安装</h1><p>hexo的安装配置教程众多，百度即可</p><p>需要注意的几点：</p><ul><li><p>想要部署到github需要先安装部署插件</p></li><li><p>部署配置</p><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">git@github.com:yantuyouyuxian/yantuyouyuxian.github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">main</span></span><br></pre></td></tr></table></figure></li><li><p>github和gitee同时部署</p><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">    <span class="attr">repo:</span> <span class="string">git@github.com:yantuyouyuxian/yantuyouyuxian.github.io.git</span></span><br><span class="line">    <span class="attr">branch:</span> <span class="string">main</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">    <span class="attr">repo:</span> <span class="string">https://gitee.com/yantuyouyuxian/yantuyouyuxian.git</span></span><br><span class="line">    <span class="attr">branch:</span> <span class="string">main</span></span><br></pre></td></tr></table></figure></li><li><p>如何在将博客部署到远端的同时，将本地资源路径使用github进行备份方便迁移</p><p>详细参考链接：<a href="https://blog.csdn.net/qq_37391214/article/details/100186909">hexo博客的备份和迁移_小皮子摘星星的博客-CSDN博客</a></p></li></ul><h1 id="hexo的常用命令"><a href="#hexo的常用命令" class="headerlink" title="hexo的常用命令"></a>hexo的常用命令</h1><p>安装：</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 全局安装hexo框架</span></span><br><span class="line">npm install -g hexo-cli</span><br><span class="line"><span class="comment"># 安装hexodeploy插件</span></span><br><span class="line">npm install --save hexo-deployer-gi</span><br><span class="line"><span class="comment"># 如果使用butterfly主题，还需要安装pug和stylus的渲染器</span></span><br><span class="line">npm install hexo-renderer-pug hexo-renderer-stylus --save</span><br></pre></td></tr></table></figure><p>使用：</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 一篇新文章</span></span><br><span class="line">hexo new <span class="string">&quot;文章名称&quot;</span></span><br><span class="line"><span class="comment"># 一个新页面</span></span><br><span class="line">hexo new page <span class="string">&quot;页面名称&quot;</span></span><br><span class="line"><span class="comment"># 清除</span></span><br><span class="line">hexo clean</span><br><span class="line"><span class="comment"># 生成</span></span><br><span class="line">hexo generate</span><br><span class="line"><span class="comment"># 本地启动</span></span><br><span class="line">hexo server </span><br><span class="line"><span class="comment"># 本地启动并指定端口号</span></span><br><span class="line">hexo server -p 5000</span><br><span class="line"><span class="comment"># 部署到远端</span></span><br><span class="line">hexo deploy</span><br><span class="line"><span class="comment"># 多个命令的组合</span></span><br><span class="line"><span class="comment"># (注意：两个&amp;会将多个命令按顺序执行)</span></span><br><span class="line">hexo clean &amp;&amp; hexo generate &amp;&amp; hexo deploy &amp;&amp; hexo server</span><br></pre></td></tr></table></figure><h1 id="域名绑定后每次deploy后404问题"><a href="#域名绑定后每次deploy后404问题" class="headerlink" title="域名绑定后每次deploy后404问题"></a>域名绑定后每次deploy后404问题</h1><p>推送到github后每次自定义的域名都会被置空，解决办法：</p><ul><li>在博客的post目录下新建CNAME文件</li><li>在文件中输入自定义域名即可</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> hexo </category>
+          
+          <category> config&amp;use </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> hexo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>如何在hexo的博客中插入图片</title>
+      <link href="/post/hexo-img/"/>
+      <url>/post/hexo-img/</url>
+      
+        <content type="html"><![CDATA[<h1 id="如何在hexo的博客中插入图片"><a href="#如何在hexo的博客中插入图片" class="headerlink" title="如何在hexo的博客中插入图片"></a>如何在hexo的博客中插入图片</h1><ul><li><p>首先打开hexo的配置文件，就是生成博客根目录中的_config.yaml</p></li><li><p>找到post_asset_folder设置项,将其设置为true</p><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">post_asset_folder:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure></li><li><p>这样,我们每次使用hexo命令新建一篇文章的时候hexo都会帮我们生成一个同名的文件夹</p></li><li><p>因为生成的文章和这个同名文件夹最终会合并到一起,所以在文章中直接引用这个文件夹中图片就行了</p></li></ul><h2 id="举例"><a href="#举例" class="headerlink" title="举例:"></a>举例:</h2><p>比如我在同名文件夹下放了一张图片：2.jpeg，在文章中：</p><ol><li><p>使用标签（typora无法预览，但有效）</p><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// &#123;% asset_img 2.jpeg img %&#125;</span></span><br></pre></td></tr></table></figure><img src="/post/hexo-img/2.jpeg" class="" title="img"></li><li><p>直接文件夹\图片名（typora可以预览，但无效）</p><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//![img](”和文章标题同名的文件夹名称“\2.jpeg)</span></span><br></pre></td></tr></table></figure><p><img src="/%E5%A6%82%E4%BD%95%E5%9C%A8hexo%E7%9A%84%E5%8D%9A%E5%AE%A2%E4%B8%AD%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%5C2.jpeg"></p></li><li><p>直接使用图片名（typora中无法预览，但有效）</p><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//![img](2.jpeg)</span></span><br></pre></td></tr></table></figure><p><img src="/post/hexo-img/2.jpeg" alt="img"></p></li><li><p>直接访问img文件夹下的图片（typora无法预览，但有效）</p><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//![img](/img/b.jpeg)</span></span><br><span class="line"><span class="comment">//如果在img下确实有这张图片是可以显示的</span></span><br></pre></td></tr></table></figure><p><img src="/img/b.jpeg" alt="img"></p></li></ol><h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><ul><li>观察hexo生成的网页资源文件目录，就明白了。</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> hexo </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> hexo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
+</search>
